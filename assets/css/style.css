@@ -1,0 +1,1069 @@
+/* IQ-SITE 2026 — Elegant conference microsite
+   External CSS (FINAL) — Mobile & Tablet Friendly
+   -------------------------------------------------- */
+
+:root{
+  /* Light & bright palette (confirmed) */
+  --bg0:#F7FAFF;
+  --bg1:#EEF4FF;
+
+  --card: rgba(255,255,255,.78);
+  --card2: rgba(255,255,255,.90);
+  --stroke: rgba(12,18,32,.12);
+
+  --text: rgba(11,18,32,.92);
+  --muted: rgba(11,18,32,.70);
+  --muted2: rgba(11,18,32,.55);
+
+  /* Core brand */
+  --brand:#1D4ED8;   /* IQ blue */
+  --brand2:#06B6D4;  /* cyan */
+  --good:#16A34A;    /* sustainability green */
+
+  /* EDIC accents */
+  --warn:#F97316;    /* orange */
+  --accent:#7C3AED;  /* purple */
+  --bad:#EF4444;     /* red */
+
+  --shadow: 0 18px 60px rgba(14,20,40,.14);
+  --radius: 18px;
+  --radius2: 26px;
+
+  --max: 1160px;
+  --pad: clamp(16px, 3vw, 28px);
+  --h1: clamp(30px, 4vw, 54px);
+  --h2: clamp(22px, 2.6vw, 34px);
+  --h3: clamp(16px, 1.8vw, 22px);
+  --body: clamp(14px, 1.25vw, 16px);
+}
+
+*{ box-sizing:border-box; }
+html{ scroll-behavior:smooth; overflow-x:hidden; } /* IMPORTANT: stop mobile horizontal scroll */
+body{
+  margin:0;
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, "Apple Color Emoji","Segoe UI Emoji";
+  font-size: var(--body);
+  line-height:1.55;
+  color:var(--text);
+  background: radial-gradient(900px 700px at 10% 10%, rgba(29,78,216,.16), transparent 60%),
+              radial-gradient(900px 700px at 85% 15%, rgba(6,182,212,.14), transparent 58%),
+              radial-gradient(900px 700px at 70% 95%, rgba(22,163,74,.10), transparent 58%),
+              linear-gradient(180deg, var(--bg0), var(--bg1));
+  overflow-x:hidden; /* IMPORTANT: stop mobile horizontal scroll */
+}
+
+a{ color:inherit; text-decoration:none; }
+a:hover{ text-decoration:underline; }
+img{ max-width:100%; display:block; }
+
+.container{
+  width: min(var(--max), calc(100% - 2*var(--pad)));
+  margin: 0 auto;
+}
+
+/* Buttons */
+.btn{
+  display:inline-flex; align-items:center; justify-content:center; gap:.55rem;
+  padding: .85rem 1.05rem;
+  border-radius: 999px;
+  border:1px solid var(--stroke);
+  background: linear-gradient(180deg, rgba(255,255,255,.92), rgba(255,255,255,.72));
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 10px 30px rgba(14,20,40,.10);
+  transition: transform .2s ease, border-color .2s ease, background .2s ease, box-shadow .2s ease;
+  font-weight: 650;
+}
+.btn:hover{
+  transform: translateY(-2px);
+  text-decoration:none;
+  border-color: rgba(12,18,32,.20);
+  box-shadow: 0 14px 44px rgba(14,20,40,.12);
+}
+.btn:active{ transform: translateY(0px); }
+.btn.primary{
+  border-color: rgba(29,78,216,.35);
+  background: linear-gradient(135deg, var(--brand), var(--brand2));
+  color: #ffffff;
+}
+.btn.ghost{
+  background: transparent;
+  border-color: var(--stroke);
+  box-shadow: none;
+}
+.badge{
+  display:inline-flex; align-items:center; gap:.4rem;
+  padding:.35rem .6rem;
+  border-radius: 999px;
+  font-size: .82rem;
+  color: var(--muted);
+  border:1px solid var(--stroke);
+  background: rgba(255,255,255,.65);
+}
+.muted{ color: var(--muted); }
+
+/* Top nav */
+header{
+  position: sticky; top:0; z-index: 50;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  background: rgba(255,255,255,.72);
+  box-shadow: 0 10px 34px rgba(14,20,40,.08);
+  border-bottom: 1px solid var(--stroke);
+}
+.nav{
+  display:flex; align-items:center; justify-content:space-between;
+  padding: .8rem 0;
+}
+.brand{ display:flex; align-items:center; gap:.75rem; }
+
+.brand-logo{
+  height: 42px;
+  width: auto;
+  max-width: 220px;
+  object-fit: contain;
+  border-radius: 12px;
+  border: 1px solid var(--stroke);
+  background: rgba(255,255,255,.80);
+}
+
+.navlinks{ display:flex; gap:.8rem; align-items:center; }
+.navlinks a{
+  padding:.55rem .7rem;
+  border-radius: 999px;
+  color: var(--muted);
+  transition: background .2s ease, color .2s ease;
+}
+.navlinks a:hover{
+  background: rgba(11,18,32,.04);
+  color: var(--text);
+  text-decoration:none;
+}
+.navlinks .btn.small{
+  padding: .55rem .85rem;
+  font-size: .9rem;
+  line-height: 1;
+}
+.navlinks .nav-cta{ margin-left: .1rem; }
+
+.menu-btn{
+  display:none;
+  border:1px solid var(--stroke);
+  background: rgba(255,255,255,.65);
+  color: var(--text);
+  border-radius: 12px;
+  padding:.55rem .7rem;
+}
+
+/* Mobile menu panel (JS toggle) */
+.menu-panel{
+  display:none;
+  padding: 0 0 1rem 0;
+}
+.menu-panel a{
+  display:block;
+  padding:.75rem .5rem;
+  color: var(--muted);
+  border-radius: 12px;
+}
+.menu-panel a:hover{
+  background: rgba(11,18,32,.04);
+  color: var(--text);
+  text-decoration:none;
+}
+.menu-cta{ margin-top: .75rem; }
+.menu-cta .btn{ width: 100%; }
+
+/* EDIC logo placeholder styles */
+.edic-logo-wrap{
+  display:flex;
+  align-items:center;
+  gap: 1rem;
+  flex-wrap:wrap;
+  margin-top: .9rem;
+}
+.edic-logo{
+  height: 72px;
+  width: auto;
+  max-width: 320px;
+  object-fit: contain;
+  border-radius: 14px;
+  border: 1px solid var(--stroke);
+  background: rgba(255,255,255,.85);
+  padding: .35rem .55rem;
+}
+
+/* Keynote mini avatar (square) */
+.avatar{
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  height: auto;
+  border-radius: 16px;
+  object-fit: cover;
+  object-position: center;
+  border: 1px solid var(--stroke);
+  background: rgba(255,255,255,.85);
+  margin-bottom: .85rem;
+}
+
+/* Keynote detail row (small photo left) */
+.keynote-row{
+  display:flex;
+  gap: 1rem;
+  align-items:center;
+  flex-wrap:wrap;
+}
+.keynote-photo{
+  width: 96px;
+  height: 96px;
+  border-radius: 18px;
+  object-fit: cover;
+  border: 1px solid var(--stroke);
+  background: rgba(255,255,255,.85);
+}
+
+hr.soft{
+  border: 0;
+  border-top: 1px solid var(--stroke);
+  margin: 1rem 0;
+}
+
+/* Hero */
+.hero{
+  position: relative;
+  padding: clamp(46px, 6vw, 76px) 0 clamp(30px, 4vw, 50px);
+  overflow:hidden; /* IMPORTANT: prevent pseudo-element causing horizontal scroll on iOS */
+}
+.hero::before{
+  content:"";
+  position:absolute;
+  inset: -240px -80px auto -80px;
+  height: 520px;
+  background: radial-gradient(closest-side at 20% 40%, rgba(124,92,255,.32), transparent 70%),
+              radial-gradient(closest-side at 72% 25%, rgba(0,215,255,.22), transparent 70%);
+  pointer-events:none;
+}
+.hero-grid{
+  display:grid;
+  grid-template-columns: 1.35fr .65fr;
+  gap: clamp(18px, 3vw, 30px);
+  align-items: start;
+}
+
+.kicker{ color: var(--muted); font-weight:650; letter-spacing: .4px; }
+h1{ margin:.55rem 0 1rem; font-size: var(--h1); line-height:1.03; letter-spacing:-.5px; }
+.lead{ color: var(--muted); max-width: 62ch; }
+.hero-actions{ display:flex; gap:.75rem; flex-wrap:wrap; margin-top: 1.25rem; }
+
+.hero-card{
+  border-radius: var(--radius2);
+  border: 1px solid var(--stroke);
+  background: linear-gradient(180deg, rgba(255,255,255,.92), rgba(255,255,255,.72));
+  box-shadow: var(--shadow);
+  overflow:hidden;
+  position: relative;
+}
+.hero-card .img{
+  height: 170px;
+  background: url("../img/pwcc.jpg") center/cover no-repeat;
+  filter: saturate(1.05) contrast(1.04);
+}
+.hero-card .body{ padding: 1rem 1rem 1.1rem; }
+.hero-card .meta{
+  display:grid; gap:.55rem;
+  margin-top:.75rem;
+}
+.meta .row{
+  display:flex; justify-content:space-between; gap:.75rem;
+  color: var(--muted);
+}
+.meta .row strong{ color: var(--text); font-weight: 650; }
+
+/* Countdown */
+.countdown{
+  display:grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap:.6rem;
+  margin-top: .8rem;
+}
+.pill{
+  text-align:center;
+  padding:.65rem .4rem;
+  border-radius: 16px;
+  border: 1px solid var(--stroke);
+  background: rgba(255,255,255,.85);
+}
+.pill .num{ font-size: 1.2rem; font-weight: 800; letter-spacing:.2px; }
+.pill .lbl{ font-size: .78rem; color: var(--muted2); }
+
+/* Sections */
+section{ padding: clamp(36px, 5vw, 70px) 0; }
+.section-head{
+  display:flex; align-items:flex-end; justify-content:space-between;
+  gap: 1rem;
+  margin-bottom: 1.4rem;
+}
+.section-head h2{ margin:0; font-size: var(--h2); letter-spacing:-.2px; }
+.section-head p{ margin:0; color: var(--muted); max-width: 60ch; }
+
+.grid3{
+  display:grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+.grid2{
+  display:grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.card{
+  border-radius: var(--radius);
+  border: 1px solid var(--stroke);
+  background: linear-gradient(180deg, rgba(255,255,255,.88), rgba(255,255,255,.68));
+  padding: 1.1rem 1.1rem 1.0rem;
+  box-shadow: 0 16px 44px rgba(14,20,40,.12);
+  position: relative;
+  overflow:hidden;
+}
+.card::after{
+  content:"";
+  position:absolute; inset:-40% -40%;
+  background: radial-gradient(circle at 20% 20%, rgba(29,78,216,.10), transparent 45%),
+              radial-gradient(circle at 80% 30%, rgba(6,182,212,.10), transparent 50%);
+  opacity:.85;
+  pointer-events:none;
+}
+.card > *{ position: relative; }
+.card h3{ margin:.2rem 0 .35rem; font-size: var(--h3); }
+.card p{ margin:.2rem 0 0; color: var(--muted); }
+
+.icon{
+  width: 40px; height: 40px;
+  border-radius: 14px;
+  display:grid; place-items:center;
+  border: 1px solid var(--stroke);
+  background: rgba(255,255,255,.70);
+}
+
+.list{
+  display:grid;
+  gap:.55rem;
+  margin:.85rem 0 0;
+  padding:0;
+  list-style:none;
+}
+.list li{
+  display:flex;
+  gap:.6rem;
+  align-items:flex-start;
+  color: var(--muted);
+}
+.list li::before{
+  content:"";
+  width: 10px; height: 10px;
+  border-radius: 999px;
+  margin-top: .4rem;
+  background: linear-gradient(135deg, var(--brand), var(--brand2));
+  flex: 0 0 10px;
+}
+
+/* Tables */
+.table{
+  width:100%;
+  border-collapse: collapse;
+  overflow:hidden;
+  border-radius: var(--radius);
+  border: 1px solid var(--stroke);
+}
+.table th, .table td{
+  padding: .85rem .9rem;
+  text-align:left;
+  border-bottom: 1px solid rgba(12,18,32,.08);
+}
+.table th{ color: var(--muted); font-weight: 700; background: rgba(11,18,32,.03); }
+.table tr:last-child td{ border-bottom:none; }
+.table td{ color: var(--text); }
+.table small{ color: var(--muted2); }
+
+/* Footer */
+footer{
+  border-top: 1px solid var(--stroke);
+  background: rgba(255,255,255,.72);
+  box-shadow: 0 10px 34px rgba(14,20,40,.08);
+  padding: 28px 0;
+}
+.footer-grid{
+  display:flex; justify-content:space-between; gap: 1.5rem; flex-wrap:wrap;
+}
+.footer-grid .muted{ color: var(--muted); }
+.footer-grid .links{ display:flex; gap:.8rem; flex-wrap:wrap; }
+.footer-grid .links a{ color: var(--muted); }
+.footer-grid .links a:hover{ color: var(--text); }
+
+/* Scroll reveal */
+.reveal{
+  opacity:0; transform: translateY(14px);
+  transition: opacity .8s ease, transform .8s ease;
+}
+.reveal.in-view{ opacity:1; transform: translateY(0px); }
+
+/* Decorative blobs — FIXED to avoid expanding page width on iOS */
+.blob{
+  position: fixed; /* IMPORTANT: fixed prevents scroll-width issues */
+  width: 520px; height: 520px;
+  border-radius: 999px;
+  filter: blur(40px);
+  opacity: .22;
+  pointer-events:none;
+  mix-blend-mode: multiply;
+  animation: floaty 12s ease-in-out infinite;
+  z-index: 0;
+}
+.blob.b1{ background: rgba(29,78,216,.22); top:-220px; left:-220px; }
+.blob.b2{ background: rgba(6,182,212,.18); top:-200px; right:-220px; animation-delay:-4s; }
+.blob.b3{ background: rgba(22,163,74,.14); bottom:-260px; left: 30%; animation-delay:-7s; }
+@keyframes floaty{
+  0%, 100%{ transform: translate(0,0) scale(1); }
+  50%{ transform: translate(18px, 22px) scale(1.05); }
+}
+
+/* Page header */
+.pagehead{ padding: 28px 0 10px; }
+.breadcrumb{ color: var(--muted2); font-size:.88rem; }
+.pagehead h2{ margin:.35rem 0 .35rem; font-size: var(--h2); }
+.pagehead p{ margin:0; color: var(--muted); max-width: 72ch; }
+
+/* Award cards - color by tier */
+.award-card{
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(12,18,32,.12);
+}
+.award-card::before{
+  content:"";
+  position:absolute;
+  left:0; top:0;
+  width:6px; height:100%;
+  background: var(--award-accent, #1D4ED8);
+}
+.award-card::after{
+  content:"";
+  position:absolute;
+  inset:-40%;
+  background: radial-gradient(circle at 20% 10%, rgba(0,0,0,.10), transparent 60%);
+  opacity: .18;
+  transform: rotate(12deg);
+  pointer-events:none;
+}
+.award-card .badge{
+  background: rgba(255,255,255,.75);
+  border: 1px solid rgba(12,18,32,.12);
+  color: rgba(12,18,32,.72);
+}
+.award-card:hover{
+  box-shadow: 0 16px 40px rgba(12,18,32,.10);
+  transform: translateY(-2px);
+}
+.award-card.gold   { --award-accent: #D4AF37; } /* Gold */
+.award-card.silver { --award-accent: #9CA3AF; } /* Silver */
+.award-card.bronze { --award-accent: #CD7F32; } /* Bronze */
+
+/* Theme banner (for long theme text) */
+.theme-banner{
+  margin-top: 1.2rem;
+  display: flex;
+  gap: .9rem;
+  align-items: flex-start;
+  padding: 1.05rem 1.1rem;
+  border-radius: 18px;
+  background: linear-gradient(135deg, rgba(29,78,216,.08), rgba(22,163,74,.07));
+  border: 1px solid rgba(12,18,32,.12);
+  box-shadow: 0 14px 34px rgba(12,18,32,.08);
+}
+.theme-icon{
+  flex: 0 0 auto;
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  display: grid;
+  place-items: center;
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--brand);
+  background: rgba(255,255,255,.85);
+  border: 1px solid rgba(12,18,32,.10);
+}
+.theme-content{ min-width: 0; }
+.theme-banner .theme-label{
+  font-size: .85rem;
+  font-weight: 800;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: rgba(12,18,32,.65);
+  margin-bottom: .25rem;
+}
+.theme-title{
+  font-size: 1.05rem;
+  font-weight: 800;
+  line-height: 1.35;
+  color: rgba(12,18,32,.92);
+  word-break: break-word;
+}
+
+/* Justify keynote long bio (if used) */
+p.muted-keynote{
+  text-align: justify;
+  text-justify: inter-word;
+  hyphens: auto;
+}
+
+/* ---------------------------
+   RESPONSIVE (Tablet & Phone)
+   --------------------------- */
+
+/* Tablet & down */
+@media (max-width: 980px){
+  .hero-grid{ grid-template-columns: 1fr; }
+
+  /* Better grids for tablet: 2 columns instead of 1 huge column */
+  .grid3{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .grid2{ grid-template-columns: 1fr; }
+
+  .navlinks{ display:none; }
+  .menu-btn{ display:inline-flex; }
+
+  .section-head{
+    flex-direction: column;
+    align-items: flex-start;
+    gap: .75rem;
+  }
+}
+
+/* Phone */
+@media (max-width: 720px){
+  .grid3{ grid-template-columns: 1fr; } /* phone = 1 column */
+
+  .brand-logo{ max-width: 170px; height: 38px; }
+
+  /* Make hero buttons stack nicely */
+  .hero-actions .btn{ width: 100%; justify-content: center; }
+
+  /* Reduce heavy glow to avoid iOS layout jitter */
+  .hero::before{
+    inset: -160px -40px auto -40px;
+    height: 420px;
+  }
+
+  /* Make blobs lighter/smaller on phones */
+  .blob{
+    width: 420px;
+    height: 420px;
+    opacity: .16;
+    filter: blur(36px);
+  }
+}
+
+/* Small phone */
+@media (max-width: 520px){
+  .container{ width: calc(100% - 2*var(--pad)); }
+
+  /* Countdown becomes 2x2 */
+  .countdown{ grid-template-columns: repeat(2, 1fr); }
+
+  /* Hero card buttons full width */
+  .hero-card .body > div[style*="display:flex"] .btn{
+    flex: 1 1 100%;
+  }
+
+  /* Theme banner tighten */
+  .theme-banner{
+    padding: .95rem 1rem;
+    gap: .75rem;
+  }
+  .theme-icon{ width: 40px; height: 40px; border-radius: 12px; }
+
+  /* Prevent very long words breaking layout */
+  h1, .theme-title, .lead{ overflow-wrap: anywhere; }
+}
+
+/* Keynote placeholder (Coming Soon) */
+.coming-wrap{
+  padding: clamp(42px, 6vw, 74px) 0;
+}
+
+.coming-card{
+  border-radius: var(--radius2);
+  border: 1px solid var(--stroke);
+  background: linear-gradient(180deg, rgba(255,255,255,.92), rgba(255,255,255,.72));
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  position: relative;
+}
+
+.coming-card::before{
+  content:"";
+  position:absolute;
+  inset:-50% -30%;
+  background:
+    radial-gradient(circle at 25% 25%, rgba(29,78,216,.14), transparent 55%),
+    radial-gradient(circle at 75% 30%, rgba(6,182,212,.12), transparent 60%),
+    radial-gradient(circle at 55% 85%, rgba(22,163,74,.10), transparent 55%);
+  transform: rotate(10deg);
+  pointer-events:none;
+}
+
+.coming-inner{
+  position: relative;
+  padding: clamp(18px, 3vw, 28px);
+  display: grid;
+  gap: .85rem;
+}
+
+.coming-badge{
+  display:inline-flex;
+  align-items:center;
+  gap:.55rem;
+  width: fit-content;
+  padding: .45rem .75rem;
+  border-radius: 999px;
+  border: 1px solid rgba(29,78,216,.25);
+  background: rgba(255,255,255,.75);
+  color: var(--muted);
+  font-weight: 700;
+}
+
+.coming-title{
+  font-size: clamp(22px, 3vw, 34px);
+  line-height: 1.1;
+  margin: 0;
+  letter-spacing: -.3px;
+}
+
+.coming-desc{
+  margin: 0;
+  color: var(--muted);
+  max-width: 72ch;
+}
+
+.coming-actions{
+  display:flex;
+  gap:.75rem;
+  flex-wrap:wrap;
+  margin-top: .35rem;
+}
+
+.coming-actions .btn{
+  min-width: 220px;
+}
+
+@media (max-width: 720px){
+  .coming-actions .btn{
+    width: 100%;
+    min-width: 0;
+  }
+}
+/* EDIC – Competition Guidelines + Downloads */
+.guidelines-grid{
+  display:grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.guideline-card{
+  border-radius: var(--radius);
+  border: 1px solid var(--stroke);
+  background: linear-gradient(180deg, rgba(255,255,255,.90), rgba(255,255,255,.70));
+  padding: 1.05rem 1.1rem;
+  box-shadow: 0 16px 44px rgba(14,20,40,.10);
+  position: relative;
+  overflow: hidden;
+}
+
+.guideline-card::after{
+  content:"";
+  position:absolute; inset:-45% -45%;
+  background: radial-gradient(circle at 25% 25%, rgba(29,78,216,.10), transparent 55%),
+              radial-gradient(circle at 80% 30%, rgba(6,182,212,.10), transparent 60%),
+              radial-gradient(circle at 60% 90%, rgba(22,163,74,.08), transparent 55%);
+  opacity:.9;
+  pointer-events:none;
+}
+.guideline-card > *{ position: relative; }
+
+.guideline-kicker{
+  display:inline-flex;
+  align-items:center;
+  gap:.5rem;
+  padding:.35rem .65rem;
+  border-radius:999px;
+  border:1px solid rgba(29,78,216,.22);
+  background: rgba(255,255,255,.72);
+  color: var(--muted);
+  font-weight: 750;
+  font-size: .85rem;
+}
+
+.guideline-title{
+  margin:.6rem 0 .35rem;
+  font-size: 1.05rem;
+  font-weight: 850;
+}
+
+.guideline-list{
+  margin: .55rem 0 0;
+  padding-left: 1.1rem;
+  color: var(--muted);
+}
+
+.guideline-list li{ margin: .35rem 0; }
+
+.download-box{
+  border-radius: var(--radius2);
+  border: 1px solid var(--stroke);
+  background: linear-gradient(135deg, rgba(29,78,216,.08), rgba(22,163,74,.07));
+  box-shadow: var(--shadow);
+  padding: clamp(16px, 2.6vw, 22px);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap: 1rem;
+  flex-wrap:wrap;
+}
+.download-box .text{
+  min-width: 240px;
+}
+.download-box h3{
+  margin:.15rem 0 .25rem;
+}
+.download-box p{
+  margin:0;
+  color: var(--muted);
+  max-width: 72ch;
+}
+.download-actions{
+  display:flex;
+  gap:.75rem;
+  flex-wrap:wrap;
+}
+.download-actions .btn{
+  min-width: 220px;
+}
+
+@media (max-width: 980px){
+  .guidelines-grid{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 720px){
+  .guidelines-grid{ grid-template-columns: 1fr; }
+  .download-actions .btn{ width: 100%; min-width: 0; }
+}
+/* ===== EDIC Layout Refinements ===== */
+
+/* Keep EDIC Overview grid2 as 2 columns on tablet; drop to 1 column on phone */
+.grid2-keep{
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+@media (max-width: 720px){
+  .grid2-keep{ grid-template-columns: 1fr; }
+}
+
+/* “Extended Abstract” details in Submission Requirements */
+.sublist{
+  margin-top: .2rem;
+  padding: .85rem .95rem;
+  border-radius: 16px;
+  border: 1px solid rgba(12,18,32,.10);
+  background: rgba(255,255,255,.72);
+}
+.note{
+  margin: .65rem 0 0;
+  color: var(--muted2);
+  font-size: .92rem;
+}
+
+/* Competition Guidelines grid cards (if you already added earlier CSS, keep one copy only) */
+.guidelines-grid{
+  display:grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+@media (max-width: 980px){
+  .guidelines-grid{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 720px){
+  .guidelines-grid{ grid-template-columns: 1fr; }
+}
+
+/* Download box actions: full width buttons on phone */
+@media (max-width: 720px){
+  .download-actions .btn{ width: 100%; min-width: 0; }
+}
+
+/* One-column rows for EDIC Overview */
+.grid1{
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+/* Nice spacing between rows */
+.spacer{
+  height: 1rem;
+}
+@media (max-width: 720px){
+  .spacer{ height: .75rem; }
+}
+.form-cta{
+  display:flex;
+  gap:.75rem;
+  flex-wrap:wrap;
+}
+@media (max-width:720px){
+  .form-cta .btn{ width:100%; }
+}
+
+/* ===== Fees Page Layout (2-column Row 1 + Featured EDIC) ===== */
+
+/* Jump links under page head */
+.jump-links{
+  margin-top: .9rem;
+  display:flex;
+  gap:.6rem;
+  flex-wrap:wrap;
+}
+@media (max-width:720px){
+  .jump-links .btn{ width:100%; }
+}
+
+/* Row 1: two columns */
+.fees-row{
+  display:grid;
+  grid-template-columns: 1.15fr .85fr; /* conference wider, EDIC featured slightly narrower */
+  gap: 1rem;
+  align-items:start;
+}
+
+/* Make table responsive (avoid overflow on mobile) */
+.fees-table-wrap{
+  width:100%;
+  overflow-x:auto;
+  border-radius: var(--radius);
+}
+.fees-table-wrap .table{
+  min-width: 520px; /* allow horizontal scroll on small phones */
+}
+
+/* Note box inside cards */
+.fees-note{
+  margin-top: 1rem;
+  padding: .85rem .95rem;
+  border-radius: 16px;
+  border: 1px solid rgba(12,18,32,.10);
+  background: rgba(255,255,255,.72);
+}
+
+/* EDIC featured card */
+.fee-featured{
+  border-color: rgba(29,78,216,.25);
+  background: linear-gradient(135deg, rgba(29,78,216,.10), rgba(255,255,255,.78));
+}
+.fee-featured::after{
+  background: radial-gradient(circle at 25% 25%, rgba(29,78,216,.12), transparent 55%),
+              radial-gradient(circle at 70% 30%, rgba(6,182,212,.10), transparent 60%),
+              radial-gradient(circle at 60% 90%, rgba(22,163,74,.08), transparent 55%);
+}
+
+.featured-top{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:.75rem;
+  flex-wrap:wrap;
+}
+.featured-tag{
+  font-weight: 900;
+  color: var(--brand);
+  letter-spacing: .2px;
+}
+.featured-title{
+  margin:.65rem 0 .25rem;
+  font-size: clamp(18px, 2vw, 22px);
+  font-weight: 900;
+}
+
+/* Price highlight box */
+.price-box{
+  margin-top: .6rem;
+  padding: 1rem 1.05rem;
+  border-radius: 18px;
+  border: 1px solid rgba(29,78,216,.22);
+  background: rgba(255,255,255,.82);
+  box-shadow: 0 12px 30px rgba(14,20,40,.10);
+}
+.price{
+  display:flex;
+  align-items: baseline;
+  gap:.4rem;
+}
+.currency{
+  font-weight: 900;
+  color: var(--brand);
+  font-size: 1.05rem;
+}
+.amount{
+  font-weight: 950;
+  color: var(--text);
+  font-size: clamp(34px, 4vw, 46px); /* BIG number */
+  letter-spacing: -0.5px;
+}
+.price-sub{
+  margin-top: .3rem;
+}
+
+/* Featured actions */
+.featured-actions{
+  margin-top: 1rem;
+  display:flex;
+  gap:.75rem;
+  flex-wrap:wrap;
+}
+@media (max-width:720px){
+  .featured-actions .btn{ width:100%; }
+}
+
+/* Tablet & phone responsive */
+@media (max-width: 980px){
+  .fees-row{
+    grid-template-columns: 1fr; /* stack on tablet/phone */
+  }
+  .fees-table-wrap .table{
+    min-width: 520px; /* keep scroll for table */
+  }
+}
+/* ===== Keynote Speaker Profile Layout ===== */
+.speaker-wrap{
+  display: grid;
+  gap: 1rem;
+}
+
+.speaker-card{
+  padding: 0; /* gunakan padding di inner sahaja */
+}
+
+.speaker-grid{
+  display: grid;
+  grid-template-columns: 340px 1fr;
+  gap: 1rem;
+  padding: clamp(16px, 2.6vw, 22px);
+  align-items: start;
+}
+
+.speaker-photo{
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1px solid var(--stroke);
+  background: rgba(255,255,255,.85);
+}
+
+.speaker-photo img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+.speaker-body{
+  min-width: 0;
+}
+
+.speaker-list{
+  margin-top: 1rem;
+}
+
+.speaker-actions{
+  margin-top: 1rem;
+  display: flex;
+  gap: .75rem;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 980px){
+  .speaker-grid{
+    grid-template-columns: 1fr;
+  }
+  .speaker-photo{
+    max-width: 420px;
+  }
+}
+
+@media (max-width: 720px){
+  .speaker-actions .btn{
+    width: 100%;
+  }
+}
+/* Nested list for academic background (Keynote page) */
+.sub-bullets{
+  margin: .55rem 0 0;
+  padding-left: 1.1rem;
+  color: var(--muted);
+  display: grid;
+  gap: .35rem;
+}
+.sub-bullets li{
+  margin: 0;
+  color: var(--muted);
+}
+/* Plain nested lines (no bullets) */
+.subplain{
+  margin-top: .45rem;
+  padding-left: .15rem;
+  display: grid;
+  gap: .35rem;
+  color: var(--muted);
+}
+.subplain > div{
+  padding-left: .75rem;
+  border-left: 3px solid rgba(29,78,216,.22); /* subtle differentiate */
+}
+.keynote-justify{
+  text-align: justify;
+  text-justify: inter-word;
+  hyphens: auto;
+}
+
+/* Call for Reviewer & Jury section */
+.call-card{
+  padding: clamp(16px, 2.6vw, 22px);
+}
+
+.call-grid{
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  align-items: start;
+}
+
+.call-grid > div{
+  padding: 1rem 1.05rem;
+  border-radius: 16px;
+  border: 1px solid rgba(12,18,32,.10);
+  background: rgba(255,255,255,.72);
+}
+
+.call-actions{
+  margin-top: .9rem;
+  display: flex;
+  gap: .75rem;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 980px){
+  .call-grid{ grid-template-columns: 1fr; }
+}
+
+@media (max-width: 720px){
+  .call-actions .btn{ width: 100%; }
+}
